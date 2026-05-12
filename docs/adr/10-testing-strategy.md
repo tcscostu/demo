@@ -62,7 +62,7 @@ MockK + MockMvc is the standard Kotlin-idiomatic testing combination used in bo-
 ## 2. Controller Test (Inbound Adapter)
 
 ```kotlin
-package tr.com.paycell.audit.bff.adapter.inbound
+package tr.com.mycorp.audit.bff.adapter.inbound
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
@@ -73,10 +73,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
-import tr.com.paycell.audit.bff.adapter.outbound.AuditPlatformRestAdapter
-import tr.com.paycell.audit.bff.domain.model.request.AuditQueryRequest
-import tr.com.paycell.audit.bff.domain.model.response.AuditEvent
-import tr.com.paycell.audit.bff.domain.model.response.Outcome
+import tr.com.mycorp.audit.bff.adapter.outbound.AuditPlatformRestAdapter
+import tr.com.mycorp.audit.bff.domain.model.request.AuditQueryRequest
+import tr.com.mycorp.audit.bff.domain.model.response.AuditEvent
+import tr.com.mycorp.audit.bff.domain.model.response.Outcome
 
 @WebMvcTest(AuditQueryController::class)
 class AuditQueryControllerTest {
@@ -124,7 +124,7 @@ class AuditQueryControllerTest {
             content = body
         }.andExpect {
             status { isBadRequest() }
-            jsonPath("$.type") { value("https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR") }
+            jsonPath("$.type") { value("https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR") }
             jsonPath("$.title") { value("Validation Error") }
             jsonPath("$.status") { value(400) }
         }
@@ -139,7 +139,7 @@ class AuditQueryControllerTest {
             content = body
         }.andExpect {
             status { isBadRequest() }
-            jsonPath("$.type") { value("https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR") }
+            jsonPath("$.type") { value("https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR") }
         }
     }
 
@@ -152,7 +152,7 @@ class AuditQueryControllerTest {
             content = body
         }.andExpect {
             status { isBadRequest() }
-            jsonPath("$.type") { value("https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR") }
+            jsonPath("$.type") { value("https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR") }
         }
     }
 
@@ -179,7 +179,7 @@ class AuditQueryControllerTest {
 ## 3. Outbound Adapter Test
 
 ```kotlin
-package tr.com.paycell.audit.bff.adapter.outbound
+package tr.com.mycorp.audit.bff.adapter.outbound
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
@@ -194,9 +194,9 @@ import org.springframework.test.web.client.match.MockRestRequestMatchers.request
 import org.springframework.test.web.client.response.MockRestResponseCreators.withServerError
 import org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess
 import org.springframework.web.client.RestClient
-import tr.com.paycell.audit.bff.config.AuditPlatformProperties
-import tr.com.paycell.audit.bff.domain.model.request.AuditQueryRequest
-import tr.com.paycell.audit.bff.exception.UpstreamServiceException
+import tr.com.mycorp.audit.bff.config.AuditPlatformProperties
+import tr.com.mycorp.audit.bff.domain.model.request.AuditQueryRequest
+import tr.com.mycorp.audit.bff.exception.UpstreamServiceException
 
 class AuditPlatformRestAdapterTest {
 
@@ -270,7 +270,7 @@ class AuditPlatformRestAdapterTest {
 ## 4. Test Package Structure
 
 ```
-src/test/kotlin/tr/com/paycell/audit/bff/
+src/test/kotlin/tr/com/mycorp/audit/bff/
 ├── adapter/
 │   ├── inbound/
 │   │   └── AuditQueryControllerTest.kt
