@@ -43,7 +43,7 @@ Use Spring `RestClient` as the HTTP client for proxying requests to the upstream
 ## 1. RestClient Configuration
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -66,7 +66,7 @@ class RestClientConfig(
 ## 2. Configuration Properties
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
@@ -80,7 +80,7 @@ data class AuditPlatformProperties(
 ## 3. Outbound Adapter (Upstream Proxy)
 
 ```kotlin
-package tr.com.paycell.audit.bff.adapter.outbound
+package tr.com.mycorp.audit.bff.adapter.outbound
 
 import org.slf4j.LoggerFactory
 import org.springframework.core.ParameterizedTypeReference
@@ -89,10 +89,10 @@ import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
 import org.springframework.web.client.RestClientResponseException
 import org.springframework.web.client.ResourceAccessException
-import tr.com.paycell.audit.bff.config.AuditPlatformProperties
-import tr.com.paycell.audit.bff.domain.model.request.AuditQueryRequest
-import tr.com.paycell.audit.bff.domain.model.response.AuditEvent
-import tr.com.paycell.audit.bff.exception.UpstreamServiceException
+import tr.com.mycorp.audit.bff.config.AuditPlatformProperties
+import tr.com.mycorp.audit.bff.domain.model.request.AuditQueryRequest
+import tr.com.mycorp.audit.bff.domain.model.response.AuditEvent
+import tr.com.mycorp.audit.bff.exception.UpstreamServiceException
 
 @Component
 class AuditPlatformRestAdapter(
@@ -138,15 +138,15 @@ class AuditPlatformRestAdapter(
 ## 4. Controller Integration
 
 ```kotlin
-package tr.com.paycell.audit.bff.adapter.inbound
+package tr.com.mycorp.audit.bff.adapter.inbound
 
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import tr.com.paycell.audit.bff.adapter.outbound.AuditPlatformRestAdapter
-import tr.com.paycell.audit.bff.domain.model.request.AuditQueryRequest
-import tr.com.paycell.audit.bff.domain.model.response.AuditEvent
+import tr.com.mycorp.audit.bff.adapter.outbound.AuditPlatformRestAdapter
+import tr.com.mycorp.audit.bff.domain.model.request.AuditQueryRequest
+import tr.com.mycorp.audit.bff.domain.model.response.AuditEvent
 
 @RestController
 class AuditQueryController(
