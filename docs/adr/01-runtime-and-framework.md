@@ -72,7 +72,7 @@ Spring Boot 3.5.3 with Kotlin 1.9.25 matches the proven enterprise BFF architect
         <relativePath/>
     </parent>
 
-    <groupId>tr.com.paycell.audit</groupId>
+    <groupId>tr.com.mycorp.audit</groupId>
     <artifactId>bff-audit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -201,7 +201,7 @@ Spring Boot 3.5.3 with Kotlin 1.9.25 matches the proven enterprise BFF architect
 ## 2. Application Entry Point
 
 ```kotlin
-package tr.com.paycell.audit.bff
+package tr.com.mycorp.audit.bff
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
