@@ -46,7 +46,7 @@ The Audit BFF (Backend-for-Frontend) is a lightweight proxy service that exposes
 ## Package Structure
 
 ```
-tr.com.paycell.audit.bff
+tr.com.mycorp.audit.bff
 ├── adapter
 │   ├── inbound          # REST controllers
 │   └── outbound         # Upstream HTTP client (RestClient)
