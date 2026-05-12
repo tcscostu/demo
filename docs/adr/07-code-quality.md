@@ -110,8 +110,8 @@ Spotless with ktlint is the proven formatting solution in the enterprise BFF sta
                     <format>HTML</format>
                 </formats>
                 <includes>
-                    <include>tr/com/paycell/audit/bff/adapter/**</include>
-                    <include>tr/com/paycell/audit/bff/exception/**</include>
+                    <include>tr/com/mycorp/audit/bff/adapter/**</include>
+                    <include>tr/com/mycorp/audit/bff/exception/**</include>
                 </includes>
                 <excludes>
                     <!-- Model/DTO classes (data classes, no logic) -->
