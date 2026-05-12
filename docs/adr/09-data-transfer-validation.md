@@ -42,7 +42,7 @@ Jakarta Bean Validation is the standard approach in Spring Boot for request vali
 ## 1. Request Data Class
 
 ```kotlin
-package tr.com.paycell.audit.bff.domain.model.request
+package tr.com.mycorp.audit.bff.domain.model.request
 
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.NotBlank
@@ -80,7 +80,7 @@ data class AuditQueryRequest(
 ## 2. Status Enum
 
 ```kotlin
-package tr.com.paycell.audit.bff.domain.model.request
+package tr.com.mycorp.audit.bff.domain.model.request
 
 import io.swagger.v3.oas.annotations.media.Schema
 
@@ -96,7 +96,7 @@ enum class AuditStatus {
 Based on the upstream Audit Event API response structure:
 
 ```kotlin
-package tr.com.paycell.audit.bff.domain.model.response
+package tr.com.mycorp.audit.bff.domain.model.response
 
 import io.swagger.v3.oas.annotations.media.Schema
 import java.math.BigDecimal
@@ -239,7 +239,7 @@ Consistent with ADR-05 error format (RFC 9457, custom `type` URI, `timestamp` ex
 
 ```json
 {
-  "type": "https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR",
+  "type": "https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR",
   "title": "Validation Error",
   "status": 400,
   "detail": "startDate: Start date is required; endDate: End date must be in dd/MM/yyyy HH:mm format",
@@ -254,7 +254,7 @@ When an invalid `status` value is provided (e.g., `"UNKNOWN"`), Jackson deserial
 
 ```json
 {
-  "type": "https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR",
+  "type": "https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR",
   "title": "Validation Error",
   "status": 400,
   "detail": "Invalid request body: Cannot deserialize value of type `AuditStatus` from String \"UNKNOWN\"",
