@@ -41,7 +41,7 @@ Spring Boot 3.x natively supports RFC 9457 via the `ProblemDetail` class (from S
 ## 1. Custom Exception Classes
 
 ```kotlin
-package tr.com.paycell.audit.bff.exception
+package tr.com.mycorp.audit.bff.exception
 
 /**
  * Thrown when the upstream audit platform returns an error or is unreachable.
@@ -64,7 +64,7 @@ class ValidationException(
 ## 2. Global Exception Handler
 
 ```kotlin
-package tr.com.paycell.audit.bff.exception
+package tr.com.mycorp.audit.bff.exception
 
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
@@ -99,7 +99,7 @@ class GlobalExceptionHandler {
             HttpStatus.BAD_REQUEST,
             fieldErrors
         ).apply {
-            type = URI.create("https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR")
+            type = URI.create("https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR")
             title = "Validation Error"
             instance = URI.create(request.requestURI)
             setProperty("timestamp", Instant.now().toString())
@@ -120,7 +120,7 @@ class GlobalExceptionHandler {
             HttpStatus.BAD_REQUEST,
             "Invalid request body: ${ex.mostSpecificCause.message}"
         ).apply {
-            type = URI.create("https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR")
+            type = URI.create("https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR")
             title = "Validation Error"
             instance = URI.create(request.requestURI)
             setProperty("timestamp", Instant.now().toString())
@@ -141,7 +141,7 @@ class GlobalExceptionHandler {
             HttpStatus.BAD_REQUEST,
             ex.message
         ).apply {
-            type = URI.create("https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR")
+            type = URI.create("https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR")
             title = "Validation Error"
             instance = URI.create(request.requestURI)
             setProperty("timestamp", Instant.now().toString())
@@ -170,7 +170,7 @@ class GlobalExceptionHandler {
             status,
             ex.message
         ).apply {
-            type = URI.create("https://api.audit-bff.paycell.com.tr/problems/UPSTREAM_ERROR")
+            type = URI.create("https://api.audit-bff.mycorp.com.tr/problems/UPSTREAM_ERROR")
             title = "Upstream Service Error"
             instance = URI.create(request.requestURI)
             setProperty("timestamp", Instant.now().toString())
@@ -191,7 +191,7 @@ class GlobalExceptionHandler {
             HttpStatus.INTERNAL_SERVER_ERROR,
             "An unexpected error occurred. Please try again later."
         ).apply {
-            type = URI.create("https://api.audit-bff.paycell.com.tr/problems/INTERNAL_ERROR")
+            type = URI.create("https://api.audit-bff.mycorp.com.tr/problems/INTERNAL_ERROR")
             title = "Internal Server Error"
             instance = URI.create(request.requestURI)
             setProperty("timestamp", Instant.now().toString())
@@ -218,7 +218,7 @@ class GlobalExceptionHandler {
 **Validation Error (400):**
 ```json
 {
-  "type": "https://api.audit-bff.paycell.com.tr/problems/VALIDATION_ERROR",
+  "type": "https://api.audit-bff.mycorp.com.tr/problems/VALIDATION_ERROR",
   "title": "Validation Error",
   "status": 400,
   "detail": "startDate: must not be blank; endDate: must not be blank",
@@ -230,7 +230,7 @@ class GlobalExceptionHandler {
 **Upstream Error (502):**
 ```json
 {
-  "type": "https://api.audit-bff.paycell.com.tr/problems/UPSTREAM_ERROR",
+  "type": "https://api.audit-bff.mycorp.com.tr/problems/UPSTREAM_ERROR",
   "title": "Upstream Service Error",
   "status": 502,
   "detail": "Audit platform service is unavailable",
