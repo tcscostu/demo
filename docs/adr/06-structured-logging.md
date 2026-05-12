@@ -42,7 +42,7 @@ AOP-based logging is the proven pattern in the enterprise BFF stack (bo-bff-fsm)
 ## 1. AOP Configuration
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.EnableAspectJAutoProxy
@@ -55,7 +55,7 @@ class AopConfiguration
 ## 2. REST Controller Logging Aspect
 
 ```kotlin
-package tr.com.paycell.audit.bff.aspect
+package tr.com.mycorp.audit.bff.aspect
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.opentelemetry.api.trace.Span
@@ -175,8 +175,8 @@ class RestControllerLoggingAspect(
 logging:
   level:
     org.springframework: WARN
-    tr.com.paycell.audit.bff: INFO
-    tr.com.paycell.audit.bff.aspect.RestControllerLoggingAspect: INFO
+    tr.com.mycorp.audit.bff: INFO
+    tr.com.mycorp.audit.bff.aspect.RestControllerLoggingAspect: INFO
   structured:
     format:
       console: #logstash  # Uncomment for JSON logs in production
