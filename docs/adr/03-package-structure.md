@@ -10,7 +10,7 @@ Implement a simplified package structure inspired by the enterprise BFF pattern 
 
 **Required Structure**:
 ```
-tr.com.paycell.audit.bff/
+tr.com.mycorp.audit.bff/
 ├── BffAuditApplication.kt              # Spring Boot entry point
 ├── adapter/
 │   ├── inbound/
@@ -39,7 +39,7 @@ tr.com.paycell.audit.bff/
 
 # Constraints:
 
-- Package root MUST be `tr.com.paycell.audit.bff` following enterprise naming convention
+- Package root MUST be `tr.com.mycorp.audit.bff` following enterprise naming convention
 - Controller (inbound adapter) MUST reside in `adapter.inbound` package
 - Upstream HTTP client (outbound adapter) MUST reside in `adapter.outbound` package
 - Request/response models MUST reside in `domain.model.request` and `domain.model.response`
@@ -66,24 +66,24 @@ The structure preserves the key hexagonal principle of separating inbound adapte
 
 ```bash
 # Source directories
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/adapter/inbound
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/adapter/outbound
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/domain/model/request
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/domain/model/response
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/config
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/aspect
-mkdir -p src/main/kotlin/tr/com/paycell/audit/bff/exception
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/adapter/inbound
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/adapter/outbound
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/domain/model/request
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/domain/model/response
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/config
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/aspect
+mkdir -p src/main/kotlin/tr/com/mycorp/audit/bff/exception
 
 # Test directories (mirror source structure)
-mkdir -p src/test/kotlin/tr/com/paycell/audit/bff/adapter/inbound
-mkdir -p src/test/kotlin/tr/com/paycell/audit/bff/adapter/outbound
+mkdir -p src/test/kotlin/tr/com/mycorp/audit/bff/adapter/inbound
+mkdir -p src/test/kotlin/tr/com/mycorp/audit/bff/adapter/outbound
 ```
 
 ## 2. Component Placement Guide
 
 | Component | Package | Class Name |
 |-----------|---------|------------|
-| Application entry | `tr.com.paycell.audit.bff` | `BffAuditApplication.kt` |
+| Application entry | `tr.com.mycorp.audit.bff` | `BffAuditApplication.kt` |
 | REST controller | `adapter.inbound` | `AuditQueryController.kt` |
 | Upstream HTTP client | `adapter.outbound` | `AuditPlatformRestAdapter.kt` |
 | Request DTO | `domain.model.request` | `AuditQueryRequest.kt` |
@@ -118,7 +118,7 @@ mkdir -p src/test/kotlin/tr/com/paycell/audit/bff/adapter/outbound
 
 | Criteria | Validation Method | Expected Result |
 |----------|-------------------|------------------|
-| Package Root | `find . -path "*paycell/audit/bff*" -type d` | Root package exists |
+| Package Root | `find . -path "*mycorp/audit/bff*" -type d` | Root package exists |
 | Inbound Adapter Package | `find . -path "*adapter/inbound*" -type d` | Directory exists |
 | Outbound Adapter Package | `find . -path "*adapter/outbound*" -type d` | Directory exists |
 | Model Package | `find . -path "*domain/model*" -type d` | Directory exists |
@@ -144,7 +144,7 @@ REQUIRED_PACKAGES=(
 )
 
 for pkg in "${REQUIRED_PACKAGES[@]}"; do
-  if find . -path "*paycell/audit/bff/$pkg" -type d | grep -q .; then
+  if find . -path "*mycorp/audit/bff/$pkg" -type d | grep -q .; then
     echo "✅ Package '$pkg' exists"
   else
     echo "⚠️ Package '$pkg' not found"
@@ -154,7 +154,7 @@ done
 # Verify no database-related packages
 FORBIDDEN_PACKAGES=("repository" "entity" "persistence")
 for pkg in "${FORBIDDEN_PACKAGES[@]}"; do
-  if find . -path "*paycell/audit/bff/*$pkg*" -type d | grep -q .; then
+  if find . -path "*mycorp/audit/bff/*$pkg*" -type d | grep -q .; then
     echo "❌ Forbidden package '$pkg' found — no database in this BFF"
     exit 1
   else
