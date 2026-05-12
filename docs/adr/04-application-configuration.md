@@ -79,8 +79,8 @@ management:
 logging:
   level:
     org.springframework: WARN
-    tr.com.paycell.audit.bff: INFO
-    tr.com.paycell.audit.bff.aspect.RestControllerLoggingAspect: INFO
+    tr.com.mycorp.audit.bff: INFO
+    tr.com.mycorp.audit.bff.aspect.RestControllerLoggingAspect: INFO
   structured:
     format:
       console: #logstash
@@ -110,7 +110,7 @@ app:
 # ─── CORS ───
 tr:
   com:
-    paycell:
+    mycorp:
       audit:
         bff:
           cors:
@@ -122,7 +122,7 @@ tr:
 ## Configuration Properties Binding (Kotlin)
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
@@ -136,18 +136,18 @@ data class AuditPlatformProperties(
 ## CORS Configuration (Kotlin)
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "tr.com.paycell.audit.bff.cors")
+@ConfigurationProperties(prefix = "tr.com.mycorp.audit.bff.cors")
 data class CorsProperties(
     val allowedOrigins: List<String> = emptyList(),
 )
 ```
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.CorsRegistry
