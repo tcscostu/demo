@@ -72,7 +72,7 @@ springdoc:
 ## 3. OpenAPI Configuration Class
 
 ```kotlin
-package tr.com.paycell.audit.bff.config
+package tr.com.mycorp.audit.bff.config
 
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Contact
